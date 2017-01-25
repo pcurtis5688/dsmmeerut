@@ -5,58 +5,58 @@ package com.fourtwelvedesign.dsmmeerut.model;
  */
 
 public class PollingStation {
-    private int POLLING_STATION_ID;
-    private String POLLING_STATION_NAME;
-    private String PARENT_POLICE_STATION;
-    private double LATITUDE;
-    private double LONGITUDE;
-    private int NO_VOTERS;
+    private int pollingStationId;
+    private String pollingStationName;
+    private String parentPoliceStationId;
+    private double pollingStationLatitude;
+    private double pollingStationLongitude;
+    private int pollingStationNoVoters;
 
-    public int getPOLLING_STATION_ID() {
-        return POLLING_STATION_ID;
+    public int getPollingStationId() {
+        return pollingStationId;
     }
 
-    public void setPOLLING_STATION_ID(int POLLING_STATION_ID) {
-        this.POLLING_STATION_ID = POLLING_STATION_ID;
+    public void setPollingStationId(int pollingStationId) {
+        this.pollingStationId = pollingStationId;
     }
 
-    public String getPOLLING_STATION_NAME() {
-        return POLLING_STATION_NAME;
+    public String getPollingStationName() {
+        return pollingStationName;
     }
 
-    public void setPOLLING_STATION_NAME(String POLLING_STATION_NAME) {
-        this.POLLING_STATION_NAME = POLLING_STATION_NAME;
+    public void setPollingStationName(String pollingStationName) {
+        this.pollingStationName = pollingStationName;
     }
 
-    public String getPARENT_POLICE_STATION() {
-        return PARENT_POLICE_STATION;
+    public String getParentPoliceStationId() {
+        return parentPoliceStationId;
     }
 
-    public void setPARENT_POLICE_STATION(String PARENT_POLICE_STATION) {
-        this.PARENT_POLICE_STATION = PARENT_POLICE_STATION;
+    public void setParentPoliceStationId(String parentPoliceStationId) {
+        this.parentPoliceStationId = parentPoliceStationId;
     }
 
-    public double getLATITUDE() {
-        return LATITUDE;
+    public double getPollingStationLatitude() {
+        return pollingStationLatitude;
     }
 
-    public void setLATITUDE(double LATITUDE) {
-        this.LATITUDE = LATITUDE;
+    public void setPollingStationLatitude(double pollingStationLatitude) {
+        this.pollingStationLatitude = pollingStationLatitude;
     }
 
-    public double getLONGITUDE() {
-        return LONGITUDE;
+    public double getPollingStationLongitude() {
+        return pollingStationLongitude;
     }
 
-    public void setLONGITUDE(double LONGITUDE) {
-        this.LONGITUDE = LONGITUDE;
+    public void setPollingStationLongitude(double pollingStationLongitude) {
+        this.pollingStationLongitude = pollingStationLongitude;
     }
 
-    public int getNO_VOTERS() {
-        return NO_VOTERS;
+    public int getPollingStationNoVoters() {
+        return pollingStationNoVoters;
     }
 
-    public void setNO_VOTERS(int NO_VOTERS) {
-        this.NO_VOTERS = NO_VOTERS;
+    public void setPollingStationNoVoters(int pollingStationNoVoters) {
+        this.pollingStationNoVoters = pollingStationNoVoters;
     }
 }

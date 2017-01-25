@@ -1,16 +1,19 @@
 package com.fourtwelvedesign.dsmmeerut.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.fourtwelvedesign.dsmmeerut.R;
+import com.fourtwelvedesign.dsmmeerut.view.PoliceStationDetailView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,14 +69,68 @@ public class PoliceStationsFragment extends Fragment {
         View viewCreated = inflater.inflate(R.layout.fragment_police_stations, container, false);
 
         // ADD THE POLICE STATION NAMES VIA ARRAY
-        Spinner spinner = (Spinner) viewCreated.findViewById(R.id.police_station_name_spinner);
+        final Spinner spinner = (Spinner) viewCreated.findViewById(R.id.police_station_name_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(viewCreated.getContext(),
                 R.array.police_station_names, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        // GET A REFERENCE TO THE PANEL WE WILL CHANGE WITH SPINNER
+        final View psContentView = viewCreated.findViewById(R.id.police_station_content_view);
+
+        // CHANGE POLICE STATION LISTENER
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                handlePoliceStationChange(parent.getRootView(), position, spinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         // RETURN THE VIEW CREATED
         return viewCreated;
+    }
+
+    public void handlePoliceStationChange(View viewToChange, int position, String selectedStation) {
+        View parentView = viewToChange.getRootView();
+        if (selectedStation.equalsIgnoreCase("select station")) {
+            // EITHER HAS JUST LOADED OR RETURNED TO FIRST,
+        } else if (selectedStation.equalsIgnoreCase("bahsuma")) {
+        } else if (selectedStation.equalsIgnoreCase("bhavanpur")) {
+        } else if (selectedStation.equalsIgnoreCase("brahmpuri")) {
+        } else if (selectedStation.equalsIgnoreCase("civil line")) {
+        } else if (selectedStation.equalsIgnoreCase("daurala")) {
+        } else if (selectedStation.equalsIgnoreCase("delhi gate")) {
+        } else if (selectedStation.equalsIgnoreCase("ganganagar")) {
+        } else if (selectedStation.equalsIgnoreCase("hastinapur")) {
+        } else if (selectedStation.equalsIgnoreCase("incholi")) {
+        } else if (selectedStation.equalsIgnoreCase("jaani")) {
+        } else if (selectedStation.equalsIgnoreCase("kankerkhera")) {
+        } else if (selectedStation.equalsIgnoreCase("kharkhoda")) {
+        } else if (selectedStation.equalsIgnoreCase("kithore")) {
+        } else if (selectedStation.equalsIgnoreCase("kotwali")) {
+        } else if (selectedStation.equalsIgnoreCase("lalkurti")) {
+        } else if (selectedStation.equalsIgnoreCase("lisadi gate")) {
+        } else if (selectedStation.equalsIgnoreCase("mawana")) {
+        } else if (selectedStation.equalsIgnoreCase("medical")) {
+        } else if (selectedStation.equalsIgnoreCase("mundali")) {
+        } else if (selectedStation.equalsIgnoreCase("nauchandi")) {
+        } else if (selectedStation.equalsIgnoreCase("pallavpuram")) {
+        } else if (selectedStation.equalsIgnoreCase("parikshitgarh")) {
+        } else if (selectedStation.equalsIgnoreCase("partapur")) {
+        } else if (selectedStation.equalsIgnoreCase("phalawda")) {
+        } else if (selectedStation.equalsIgnoreCase("railway road")) {
+            PoliceStationDetailView psDetailView = new PoliceStationDetailView(getContext(), null, selectedStation);
+            parentView.setBackgroundColor(Color.BLACK);
+        } else if (selectedStation.equalsIgnoreCase("rohta")) {
+        } else if (selectedStation.equalsIgnoreCase("sadar")) {
+        } else if (selectedStation.equalsIgnoreCase("sardhana")) {
+        } else if (selectedStation.equalsIgnoreCase("sarurpur")) {
+        } else if (selectedStation.equalsIgnoreCase("T.P. nagar")) {
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
