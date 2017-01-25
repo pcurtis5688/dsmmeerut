@@ -14,8 +14,19 @@
     tools:context="com.fourtwelvedesign.dsmmeerut.activity.PoliceStationActivity"
     tools:showIn="@layout/app_bar_police_stations">
 
-    <TabWidget
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">tag
-    </TabWidget>
+    <item
+        android:id="@+id/bahsuma_menu_item"
+        android:title="@string/ps_bahsuma" />
+
+    <item
+        android:id="@+id/delhi_gate_menu_item"
+        android:title="@string/ps_delhi_gate" />
+
+    <item
+        android:id="@+id/railroad_road_menu_item"
+        android:title="@string/ps_railway_road" />
+
+    <item
+        android:id="@+id/sadar_menu_item"
+        android:title="@string/ps_sadar" />
 </RelativeLayout>
