@@ -15,18 +15,17 @@ import android.view.MenuItem;
 
 import com.fourtwelvedesign.dsmmeerut.R;
 import com.fourtwelvedesign.dsmmeerut.fragment.HomeFragment;
-import com.fourtwelvedesign.dsmmeerut.fragment.PoliceStationsFragment;
+import com.fourtwelvedesign.dsmmeerut.view.PoliceStationDetailView;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        HomeFragment.OnFragmentInteractionListener,
-        PoliceStationsFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private GoogleApiClient client;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        this.drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -88,11 +87,10 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home_item) {
-            // HANDLE HOME ACTION
-            displayView("home");
+            // HANDLE HOME ACTION (ALREADY HOME)
         } else if (id == R.id.nav_police_stations) {
             // NAVIGATE TO STATIONS PAGE
-            displayView("police_stations");
+            setContentView(new PoliceStationDetailView(getApplicationContext(), null));
         } else if (id == R.id.nav_plans) {
             // Handle the plans action
         } else if (id == R.id.nav_force_multi) {
@@ -100,24 +98,8 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_capf_arrangement) {
             // Handle the capf arrangement action
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void displayView(String viewName) {
-        Fragment fragment = null;
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        Class fragmentClass = null;
-        if (viewName.equalsIgnoreCase("home")) {
-            fragment = new HomeFragment();
-            fragmentManager.beginTransaction().replace(R.id.ps_main_panel, fragment).commit();
-        } else if (viewName.equalsIgnoreCase("police_stations")) {
-            ////// POLICE STATIONS PAGE/ACTIVITY
-            fragment = new PoliceStationsFragment();
-            fragmentManager.beginTransaction().replace(R.id.ps_main_panel, fragment).commit();
-        }
     }
 
     /**
@@ -154,11 +136,5 @@ public class Home extends AppCompatActivity
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
-    }
-
-    ////// THIS IS IMPLEMENTED IN ORDER TO UTILIZE THE HOME FRAGMENT
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        int i = 0;
     }
 }
