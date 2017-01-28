@@ -46,16 +46,18 @@ public class PoliceStationDetailsActivity extends AppCompatActivity
         ////// INFLATE THE VIEW TO BE ADJUSTED
         this.fragmentManager = getSupportFragmentManager();
         this.homeFragment = new HomeFragment();
+        fragmentManager.beginTransaction().attach(homeFragment).commit();
         this.homeFragment.onCreateView(getLayoutInflater(), contentFrame, savedInstanceState);
         this.psDetailsFragment = new PsDetailsFragment();
-        this.psDetailsFragment.onCreateView(getLayoutInflater(), contentFrame,savedInstanceState);
+        fragmentManager.beginTransaction().attach(psDetailsFragment).commit();
+        this.psDetailsFragment.onCreateView(getLayoutInflater(), contentFrame, savedInstanceState);
         psDetailsFragmentView = (ViewGroup) psDetailsFragment.onCreateView(getLayoutInflater(), contentFrame, savedInstanceState);
         this.activityLinearLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.activity_police_stations, (ViewGroup) findViewById(R.id.activity_linear_layout), true);
         this.activityLinearLayout.addView(homeFragment.onCreateView(getLayoutInflater(), (ViewGroup) findViewById(R.id.activity_linear_layout), savedInstanceState));
         setContentView(R.layout.activity_police_stations);
         this.contentFrame = (ViewGroup) findViewById(R.id.layout_below_toolbar);
         this.psDetailsActivityBundleInstance = savedInstanceState;
-        this.fragmentManager.beginTransaction().add(homeFragment, "homeFragment").commit();
+        fragmentManager.beginTransaction().add(homeFragment, "homeFragment").commit();
         this.contentFrame = (ViewGroup) findViewById(R.id.app_bar_ps_linear);
         this.frameToReplace = (ViewGroup) contentFrame.findViewById(R.id.layout_below_toolbar);
 
@@ -71,6 +73,9 @@ public class PoliceStationDetailsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         this.drawer = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
+        this.drawer.setBackgroundColor(getResources().getColor(R.color.layout_gray));
+        fragmentManager.beginTransaction().replace(frameToReplace.getId(), homeFragment).commit();
+
     }
 
     @Override
@@ -87,6 +92,7 @@ public class PoliceStationDetailsActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_police_stations_drawer, menu);
+
         return true;
     }
 
@@ -110,6 +116,7 @@ public class PoliceStationDetailsActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(frameToReplace.getId(), homeFragment).commit();
         } else if (id == R.id.nav_police_stations) {
             fragmentManager.beginTransaction().replace(frameToReplace.getId(), psDetailsFragment).commit();
+
         } else if (id == R.id.nav_plans) {
             // Handle the plans action0
         } else if (id == R.id.nav_force_multi) {

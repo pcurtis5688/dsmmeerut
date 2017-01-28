@@ -7,7 +7,7 @@ import android.widget.AdapterView;
  * Created by Paul Curtis on 1/26/2017.
  */
 
-class PoliceStationSpinnerListener implements AdapterView.OnItemSelectedListener {
+public class PoliceStationSpinnerListener implements AdapterView.OnItemSelectedListener {
     private String currentStationViewName;
 
     @Override
