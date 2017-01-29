@@ -66,6 +66,18 @@ public class DBHandler extends SQLiteOpenHelper {
         return station;
     }
 
+    public PoliceStation getPoliceStationByName(String stationName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_POLICE_STATIONS, new String[]{PS_KEY_ID, PS_NAME, PS_SUBTITLE}, PS_NAME + " =?",
+                new String[]{String.valueOf(stationName)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        PoliceStation station = new PoliceStation(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2));
+        return station;
+    }
+
     // GET ALL POLICE STATIONS
     public List<PoliceStation> getAllPoliceStations() {
         List<PoliceStation> stationList = new ArrayList<PoliceStation>();
@@ -117,5 +129,19 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(PS_SUBTITLE, station.getPs_station_subtitle());
         return db.update(TABLE_POLICE_STATIONS, values, PS_KEY_ID + " =?",
                 new String[]{String.valueOf(station.getPs_station_id())});
+    }
+
+    // INSERT A POLICE STATION
+    public void insertPoliceStations(List<PoliceStation> policeStationList) {
+        //do db check for populated
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        for (PoliceStation currentStation : policeStationList) {
+            values.put(PS_KEY_ID, currentStation.getPs_station_id());
+            values.put(PS_NAME, currentStation.getPs_station_name());
+            values.put(PS_SUBTITLE, currentStation.getPs_station_subtitle());
+            db.insert(TABLE_POLICE_STATIONS, null, values);
+        }
     }
 }

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home_item"
-        android:icon="@drawable/meerut_at_a_glance_ic"
+        android:icon="@drawable/meerut_at_a_glance_hex"
         android:title="@string/home_text" />
     <group android:checkableBehavior="single">
         <item
